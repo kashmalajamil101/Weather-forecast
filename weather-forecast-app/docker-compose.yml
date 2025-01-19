@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: nginx:latest
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - '3001:80'  # Exposes frontend on http://localhost:3001
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - '5000:5000'  # Exposes backend on http://localhost:5000
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: mysql://dbuser:dbpassword@database:3306/weatherdata
+
+  database:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: weatherdata
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpassword
+    ports:
+      - '3307:3306'  # Exposes database on localhost:3307

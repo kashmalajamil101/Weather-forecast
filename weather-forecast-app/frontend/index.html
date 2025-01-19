@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Forecast Application</title>
+</head>
+<body>
+  <h1>Weather Forecast Application</h1>
+  <form id="forecastForm">
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city"><br><br>
+    <button type="button" onclick="getWeather()">Get Weather</button>
+  </form>
+  <h2>Weather Forecast</h2>
+  <div id="forecast"></div>
+  <script>
+    async function getWeather() {
+      const city = document.getElementById("city").value;
+      const response = await fetch(`http://localhost:5000/weather?city=${city}`);
+      const weather = await response.json();
+      const forecastDiv = document.getElementById("forecast");
+      forecastDiv.innerHTML = `<p><strong>${weather.city}:</strong> ${weather.description}, ${weather.temperature}°C</p>`;
+    }
+  </script>
+</body>
+</html>
