@@ -18,6 +18,7 @@ cd C:\Users\SOFTAGE\Desktop\weather-forecast-app
 2.Build microservice app : docker-compose up --build
 Than our services start running and container made according to required services
 3.Than we integrate our three services  with the help of port for better efficient working of app
+4.Thus by accessing the port our backend looks like this ,Welcome to the Weather Forecast API! Available endpoints: /weather
 ## 3. Technologies Used
 - Frontend:
  Contains the frontend files (index.html, etc.)
